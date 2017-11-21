@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&amp;subset=cyrillic" rel="stylesheet">
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div id="company_name">
+        <span></span>
+    </div>
+    <div class="exit_btn_div">
+        <form action="/Account/LogOff" class="navbar-right btn" id="logoutForm" method="post">
+            @Html.AntiForgeryToken()
+            <a href="javascript:document.getElementById('logoutForm').submit()" class="exit_btn">Выйти</a>
+        </form>
+    </div>
+    <div class="left_nav">
+        <a href="@Url.Action("Index","Company")"><img src="~/Img/company.jpg" />Компания</a>
+        @if (User.IsInRole("manager"))
+        {
+            <a href="@Url.Action("ManagerMain","Company")"><img src="~/Img/orders.jpg" />Заказы</a>
+        }
+        @if (User.IsInRole("owner"))
+        {
+            <a href="@Url.Action("Manage","Company")"><img src="~/Img/managment.jpg" />Управление</a>
+        }
+        @if (User.IsInRole("performer"))
+        {
+            <a href="@Url.Action("Tasks","Company")"><img src="~/Img/tasks.jpg" />Мои задания</a>
+        }
+    </div>
+    <div class="wrapper">
+        @RenderBody()
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script type="text/javascript" src="~/Scripts/Script.js"></script>
+    <script type="text/javascript" src="~/Scripts/Company/LayoutScript.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    @RenderSection("scripts", required: false)
+
+    <script type="text/javascript">
+
+        $(document)
+            .ajaxStart(function () {
+                $.blockUI({
+                    message: '<img src="/loading.gif" />',
+                    css: {
+                        border: '0px solid #FFFFFF',
+                        cursor: 'wait',
+                        width: '30%',
+                        top: '40%',
+                        left: '35%',
+                        backgroundColor: 'transparent'
+                    },
+                    overlayCSS: { backgroundColor: '#FFFFFF', opacity: 0.0, cursor: 'wait' }
+                });
+            })
+            .ajaxStop($.unblockUI);
+    </script>
+
+</body>
+</html>

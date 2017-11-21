@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&amp;subset=cyrillic" rel="stylesheet">
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div id="page-preloader"><span class="spinner"></span></div>
+    <div class="menu">
+        <div class="container">
+            <a href="@Url.Action("Index", "Home")" class="menu_main">Главная</a>
+            <a href="@Url.Action("Api", "Home")">API</a>
+            <a href="@Url.Action("News", "Home")">Новости</a>
+            @Html.Partial("_LoginPartial")
+        </div>
+    </div>
+    @RenderBody()
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+    <script type="text/javascript" src="~/Scripts/Script.js"></script>
+    <script type="text/javascript">
+
+        $(document)
+            .ajaxStart(function () {
+                $.blockUI({
+                    message: '<img src="/loading.gif" />',
+                    css: {
+                        border: '0px solid #FFFFFF',
+                        cursor: 'wait',
+                        width: '30%',
+                        top: '40%',
+                        left: '35%',
+                        backgroundColor: 'transparent'
+                    },
+                    overlayCSS: { backgroundColor: '#FFFFFF', opacity: 0.0, cursor: 'wait' }
+                });
+            })
+            .ajaxStop($.unblockUI);
+    </script>
+</body>
+</html>

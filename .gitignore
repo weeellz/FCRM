@@ -1,0 +1,13 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+FCRM/obj
+FCRM/bin
+FCRM.Web/obj
+FCRM.Web/bin
+FCRM.Web/App_Data/aspnet-FSRM.Web-20161125092606.mdf
+FCRM.Web/App_Data/aspnet-FSRM.Web-20161125092606_log.ldf
+.nuget
+.vs
+*.suo

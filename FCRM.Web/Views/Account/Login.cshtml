@@ -1,0 +1,24 @@
+﻿@model FCRM.Web.Models.LoginViewModel
+@{
+    ViewBag.Title = "Вход";
+}
+<div class="bg_login">
+    <div class="enter">
+        <div class="container">
+            <div class="text">
+                <form action="/Account/Login" class="form-horizontal" method="post" role="form" novalidate="novalidate">
+                    @Html.AntiForgeryToken()
+                    <h2>Вход</h2>
+                    <input class="login-field" data-val="true" data-val-required="Требуется поле Логин." id="Login" name="UserName" type="text" value="" placeholder="Логин">
+                    <input class="password-field" data-val="true" data-val-required="Требуется поле Пароль." id="Password" name="Password" type="password" placeholder="Пароль">
+                    <input class="checkbox-field" data-val="true" data-val-required="Требуется поле Запомнить?" id="RememberMe" name="RememberMe" type="checkbox" value="true"><span class="remember">Запомнить?</span>
+                    <input name="RememberMe" type="hidden" value="false">
+                    <br />
+                    <input type="submit" value="Вход" class="btn_login">
+                    <br />
+                    <a href="/Account/Register">Регистрация</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

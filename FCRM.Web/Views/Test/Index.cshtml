@@ -1,0 +1,49 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <style>
+        input{
+            display:block;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <input type="text" id="name" placeholder="name"/>
+        <input type="text" id="phone" placeholder="phone" />
+        <input type="text" id="email" placeholder="email" />
+        <input type="text" id="company_name" placeholder="company_name" />
+        <input type="text" id="information" placeholder="info" />
+        <input type="text" id="guid" placeholder="guid" />
+        <input type="button" id="btn" value="post" />
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#btn").click(add_order);
+        });
+        var add_order = function () {
+            $.post("/api/"+$("#guid").val()+"/add_order", {
+                Name: $("#name").val(),
+                Phone: $("#phone").val(),
+                Email: $("#email").val(),
+                CompanyName: $("#company_name").val(),
+                Information: $("#information").val(),
+            },
+                function (data) {
+                    if (data.Success) {
+                        alert("Success");
+                    }
+                });
+        };
+    </script>
+</body>
+</html>

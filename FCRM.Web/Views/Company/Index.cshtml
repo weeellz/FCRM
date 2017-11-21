@@ -1,0 +1,128 @@
+﻿@using Microsoft.AspNet.Identity
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/LayoutCompany.cshtml";
+}
+
+<script type="text/x-jquery-tmpl" id="ordersTemplate">
+    <div class="flip-container">
+        <div class="flipper">
+            <div class="front">
+                <div class="grid-item">
+                    <div class="dashboard card card-2">
+                        <section class="dashboard-item">
+                            <h4 class="dashboard-title">
+                                <span class="title-txt">Заказы</span>
+                            </h4>
+                            <div class="dashboard-wrapper">
+                                <div class="order_count">
+                                    <span class="quantity_text">Активных заказов</span>
+                                    <span class="quantity">${List.length}</span>
+                                </div>
+                                <div class="order_info">
+
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+            <div class="back">
+                <div class="grid-item">
+                    <div class="dashboard card card-2">
+                        <section class="dashboard-item">
+                            <h4 class="dashboard-title">
+                                <span class="title-txt">Последние заказы</span>
+                            </h4>
+                            <div class="dashboard-wrapper1">
+                                {{each List}}
+                                <div class="order" data-order-id="${Id}">
+                                    <div class="main_info">
+                                        <span class="order_company"><span class="names">Имя компании: </span>${CompanyName}</span>
+                                        <span class="order_name"><span class="names">Имя заказа: </span>${Name}</span>
+                                    </div>
+                                    <div class="additional_info">
+                                        <span class="order_company"><span class="names">Имя компании: </span>${CompanyName}</span>
+                                        <span class="order_name"><span class="names">Имя заказа: </span>${Name}</span>
+                                        <span class="order_email"><span class="names">Email: </span>${Email}</span>
+                                        <span class="order_phone"><span class="names">Телефон: </span>${Phone}</span>
+                                        <span class="order_info"><span class="names">Информация: </span>${Information}</span>
+                                        <span class="order_manager"><span class="names">Менеджер: </span>${Manager}</span>
+                                        <span class="order_price"><span class="names">Цена: </span>${Price}</span>
+                                        <span class="btn_back">Назад</span>
+                                    </div>
+                                </div>
+                                {{/each}}
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<div class="row">
+    <div id="order_list">
+        <div class="grid-item">
+            <div class="dashboard card card-2">
+                <section class="dashboard-item">
+                    <h4 class="dashboard-title">
+                        <span class="title-txt">Заказы</span>
+                    </h4>
+                    <div class="dashboard-wrapper">
+                        <span>Загрузка</span>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <div id="company_statistic">
+        <div class="grid-item">
+            <div class="dashboard card card-2">
+                <section class="dashboard-item">
+                    <h4 class="dashboard-title">
+                        <span class="title-txt">Статистика</span>
+                    </h4>
+                    <div class="dashboard-wrapper">
+                        <div class="main_info1">
+                            <span class="statistics">Переговоры: <span id="orders0"></span></span>
+                            <span class="statistics">Заключён контракт: <span id="orders1"></span></span>
+                            <span class="statistics">В процессе работы: <span id="orders2"></span></span>
+                            <span class="statistics">Выполненные: <span id="orders3"></span></span>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="grid-item">
+    <div class="">
+        <h4 class="h4"></h4>
+        <div id="">
+        </div>
+    </div>
+</div>
+
+<div class="grid-item">
+    <div class="">
+        <h4 class="h4"></h4>
+        <div id="">
+        </div>
+    </div>
+</div>
+
+<div class="grid-item">
+    <div class="">
+        <h4 class="h4"></h4>
+        <div id="">
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script type="text/javascript" src="~/Scripts/Company/CompanyMain.js"></script>
+}

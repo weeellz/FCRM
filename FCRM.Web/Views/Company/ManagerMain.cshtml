@@ -1,0 +1,159 @@
+﻿@{
+    ViewBag.Title = "ManagerMain";
+    Layout = "~/Views/Shared/LayoutCompany.cshtml";
+}
+
+<script type="text/x-jquery-tmpl" id="unassignedOrdersTemplate">
+    <div class="grid-item">
+        <div class="dashboard card card-2">
+            <section class="dashboard-item" id="un_or_list">
+                <h4 class="dashboard-title">
+                    <span class="title-txt">Список заказов без менеджера</span>
+                </h4>
+                <div class="dashboard-wrapper1">
+                    {{each List}}
+                    <div class="order" data-order-id="${Id}">
+                        <div class="main_info">
+                            <span class="order_company"><span class="names">Имя компании: </span>${CompanyName}</span>
+                            <span class="order_name"><span class="names">Имя заказа: </span>${Name}</span>
+                        </div>
+                        <span class="btn_assign_to_order">Подписаться</span>
+                    </div>
+                    {{/each}}
+                </div>
+            </section>
+        </div>
+    </div>
+</script>
+
+<script type="text/x-jquery-tmpl" id="myOrdersTemplate">
+    <div class="flip-container">
+        <div class="flipper">
+            <div class="front">
+                <div class="grid-item">
+                    <div class="dashboard card card-2">
+                        <section class="dashboard-item" id="my_or_list">
+                            <h4 class="dashboard-title">
+                                <span class="title-txt">Мои заказы</span>
+                            </h4>
+                            <div class="dashboard-wrapper1">
+                                {{each List}}
+                                <div class="item">
+                                    <div class="myorder" data-order-id="${Id}">
+                                        <div class="main_info">
+                                            <span class="order_company"><span class="names">Имя компании: </span>${CompanyName}</span>
+                                            <span class="order_name"><span class="names">Имя заказа: </span>${Name}</span>
+                                        </div>
+                                        <div class="additional_info">
+                                            <span class="order_company"><span class="names">Имя компании: </span>${CompanyName}</span>
+                                            <span class="order_name"><span class="names">Имя заказа: </span>${Name}</span>
+                                            <span class="order_email"><span class="names">Email: </span>${Email}</span>
+                                            <span class="order_phone"><span class="names">Телефон: </span>${Phone}</span>
+                                            <span class="order_info"><span class="names">Информация: </span>${Information}</span>                                            
+                                            <input type="hidden" class="price_field" value="${Price}"/>
+                                            {{each Performers}}
+                                            <input type="hidden" value="${$value}" />
+                                            {{/each}}
+                                        </div>
+                                    </div>
+                                </div>
+                                {{/each}}
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+            <div class="back">
+                <div class="grid-item">
+                    <div class="dashboard card card-2">
+                        <section class="dashboard-item">
+                            <h4 class="dashboard-title">
+                                <span class="title-txt">Дополнительная информация</span>
+                            </h4>
+                            <div class="dashboard-wrapper1">
+                                <div id="info">
+                                    Загрузка
+                                </div>
+                                <input class="hidden" id="order_id" value="" style="display:none; "/>
+                                <span class="names">Цена: </span><input type="text" id="price" value="" />
+                                <span id="btn_save_perf">Сохранить</span>
+                                <br />
+                                <span id="btn_back">Назад</span>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script type="text/x-jquery-tmpl" id="performersTemplate">
+    <div class="grid-item">
+        <div class="dashboard card card-2">
+            <section class="dashboard-item" id="perf_list">
+                <h4 class="dashboard-title">
+                    <span class="title-txt">Исполнители</span>
+                </h4>
+                <div class="dashboard-wrapper1">
+                    {{each List}}
+                    <div class="performer" id="${Id}">
+                        <div class="performer_name">${Name}</div>
+                    </div>
+                    {{/each}}
+                </div>
+            </section>
+        </div>
+    </div>
+</script>
+
+<div class="row">
+    <div class="fg1 h300" id="unassigned_order_list">
+        <div class="grid-item uol">
+            <div class="dashboard card card-2">
+                <section class="dashboard-item" id="un_or_list">
+                    <h4 class="dashboard-title">
+                        <span class="title-txt">Список заказов без менеджера</span>
+                    </h4>
+                    <div class="dashboard-wrapper1">
+                        <span>Загрузка</span>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <div class="fg1 h300 w400" id="my_order_list">
+        <div class="grid-item mol">
+            <div class="dashboard card card-2">
+                <section class="dashboard-item" id="my_or_list">
+                    <h4 class="dashboard-title">
+                        <span class="title-txt">Мои заказы</span>
+                    </h4>
+                    <div class="dashboard-wrapper1">
+                        <span>Загрузка</span>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <div class="fg1 h300" id="performers_list">
+        <div class="grid-item perf">
+            <div class="dashboard card card-2">
+                <section class="dashboard-item" id="perf_list">
+                    <h4 class="dashboard-title">
+                        <span class="title-txt">Исполнители</span>
+                    </h4>
+                    <div class="dashboard-wrapper1">
+                        <span>Загрузка</span>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script type="text/javascript" src="~/Scripts/Company/Manager.js"></script>
+}

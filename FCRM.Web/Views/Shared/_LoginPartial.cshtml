@@ -1,0 +1,25 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right btn" }))
+    {
+        @Html.AntiForgeryToken()
+        <a href="@Url.Action("Index", "Company")">Привет, @User.Identity.GetUserName()</a>
+        <a class="menu_last" href="javascript:document.getElementById('logoutForm').submit()">Выйти</a>
+    }
+}
+else
+{
+    <div class="popup" id="popup" style="display:none">
+        <div class="popup-content">
+            <div class="popup_choice">
+                <div class="register_choose" style="display:block;">
+                    <a href="@Url.Action("Register", "Home")" class="btn_r" id="btn_o">Регистрация владельца</a>
+                    <a href="@Url.Action("Register", "Account")" class="btn_r" id="btn_e">Регистрация сотрудника</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="@Url.Action("Login", "Account")" class="btn menu_last">Войти</a>
+    <span class="btn_choose" id="reg-choose">Регистрация</span>
+}

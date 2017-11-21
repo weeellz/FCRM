@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "Регистрация";
+}
+<div class="bg_register_own">
+    <div class="register_emp">
+        <div class="container">
+            <div class="text">
+                <h2>Регистрация</h2>
+                <form action="/Home/Register" class="form-horizontal" method="post" role="form" novalidate="novalidate">
+                    <input class="login-field" type="text" id="login" placeholder="Логин" />
+                    <input class="password-field" type="password" id="password" placeholder="Пароль" />
+                    <input class="password-field" data-val="true" data-val-equalto="&quot;Confirm password&quot; и &quot;Password&quot; не совпадают." data-val-equalto-other="*.Password" id="ConfirmPassword" name="ConfirmPassword" type="password" placeholder="Подтвердите пароль">
+                    <input class="guid-field" type="text" id="guid" placeholder="Guid" />
+                    <input class="btn_register" type="button" id="post_btn" value="Зарегистрироваться" />
+                </form>
+                @section Scripts{
+                    <script type="text/javascript">
+                        $(document).ready(function () {
+                            $("#post_btn").click(function () {
+                                $.post("/api/" + $("#guid").val() + "/register", {
+                                    UserName: $("#login").val(),
+                                    Password: $("#password").val()
+                                }, function (data) {
+                                    if (data.Success) {
+                                        alert("success");
+                                    }
+                                });
+                            });
+                        });
+                    </script>
+                }
+            </div>
+        </div>
+    </div>
+</div>

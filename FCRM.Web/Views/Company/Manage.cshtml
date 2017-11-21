@@ -1,0 +1,83 @@
+﻿@using Microsoft.AspNet.Identity
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/LayoutCompany.cshtml";
+}
+<script type="text/x-jquery-tmpl" id="usersTemplate">
+    <div class="grid-item">
+        <div class="dashboard card card-2">
+            <section class="dashboard-item" id="manage">
+                <h4 class="dashboard-title">
+                    <span class="title-txt">Управление</span>
+                </h4>
+                <div class="dashboard-wrapper1">
+                    <table>
+                        <tr>
+                            <td class="user headline">Имя:</td>
+                            <td class="roles headline">Роли:</td>
+                        </tr>
+                        {{each List}}
+                        <tr>
+                            <td class="user" data-user-id="${Id}">
+                                <span class="user_name">${Name}</span>
+                                <span class="user_surname">${Surname}</span>
+                            </td>
+                            <td class="roles" data-user-id="${Id}">
+                                <span class="{{if $.inArray("owner", Roles)>-1}}active{{/if}}" data-role-type="owner">Владелец</span>
+                                <span class="{{if $.inArray("performer", Roles)>-1}}active{{/if}}" data-role-type="performer">Исполнитель</span>
+                                <span class="{{if $.inArray("manager", Roles)>-1}}active{{/if}}" data-role-type="manager">Менеджер</span>
+                            </td>
+                        </tr>
+                        {{/each}}
+                    </table>
+                </div>
+            </section>
+        </div>
+    </div>
+</script>
+
+<div class="row">
+    <div class="fg1" id="users_list">
+        <div class="grid-item">
+            <div class="dashboard card card-2">
+                <section class="dashboard-item" id="manage">
+                    <h4 class="dashboard-title">
+                        <span class="title-txt">Управление</span>
+                    </h4>
+                    <div class="dashboard-wrapper1">
+                        <span>Загрузка</span>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid-item fg1 size_code">
+        <div class="dashboard card card-2">
+            <section class="dashboard-item" id="code">
+                <h4 class="dashboard-title">
+                    <span class="title-txt">Информация: </span>
+                </h4>
+                <div class="dashboard-wrapper1">
+                    <span>Код для добавления сотрудника:</span>
+                    <div id="company_guid">
+                        <span>Загрузка</span>
+                    </div>
+                    <span>Количество менеджеров:</span>
+                    <div id="count_managers">
+                        <span>Загрузка</span>
+                    </div>
+                    <span>Количество исполнителей:</span>
+                    <div id="count_performers">
+                        <span>Загрузка</span>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+    <script type="text/javascript" src="~/Scripts/Company/Owner.js"></script>
+}

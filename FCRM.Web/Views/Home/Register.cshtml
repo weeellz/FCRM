@@ -1,0 +1,24 @@
+﻿@model FCRM.Web.Models.RegisterOwnerViewModel
+@{
+    ViewBag.Title = "Регистрация";
+}
+<div class="bg_register_emp">
+    <div class="register_own">
+        <div class="container">
+            <div class="text">
+                <h2>Регистрация</h2>
+                <form action="/Account/Register" class="form-horizontal" method="post" role="form" novalidate="novalidate">
+                    @Html.AntiForgeryToken()
+                    <input class="company-field" data-val="true" data-val-required="Требуется поле Имя компании." id="CompanyName" name="CompanyName" type="text" value="" placeholder="Имя компании">
+                    <input class="login-field" data-val="true" data-val-required="Требуется поле Логин пользователя." id="UserName" name="UserName" type="text" value="" placeholder="Логин">
+                    <input class="password-field" data-val="true" data-val-length="The Password must be at least 6 characters long." data-val-length-max="100" data-val-length-min="6" data-val-required="Требуется поле Password." id="Password" name="Password" type="password" placeholder="Пароль">
+                    <input class="password-field" data-val="true" data-val-equalto="&quot;Confirm password&quot; и &quot;Password&quot; не совпадают." data-val-equalto-other="*.Password" id="ConfirmPassword" name="ConfirmPassword" type="password" placeholder="Подтвердите пароль">
+                    <input type="submit" class="btn_register" value="Зарегистрироваться">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
